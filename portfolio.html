@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+</head>
+<body class="bg-emerald-600 dark:bg-emerald-900 min-h-screen flex items-center justify-center p-4">
+  <main class="w-full max-w-sm">
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-t-4 border-pink-500">
+      
+      <article class="p-5">
+        <figure class="text-center mb-4">
+          <img src="\images\IMG_5344.JPG" alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-2 border-2 border-pink-400 shadow-md">
+          <figcaption>
+            <h1 class="text-xl font-bold text-gray-800 dark:text-white">Pamella UWASE</h1>
+            <p class="text-emerald-500 dark:text-emerald-400">Web Developer</p>
+          </figcaption>
+        </figure>
+
+        <div class="text-gray-600 dark:text-gray-200 mb-4">
+          <p>I build responsive websites and applications with modern technologies.</p>
+        </div>
+        
+        <address class="not-italic border-l-2 border-emerald-500 pl-3 mb-4 text-sm">
+          <div class="mb-1">📧 uwasepamellas@gmail.com</div>
+        </address>
+
+        <div>
+          <h2 class="font-medium mb-1 text-emerald-700 dark:text-emerald-300">Experience</h2>
+          <p class="text-sm">Frontend Developer at Igire Rwanda</p>
+          <time datetime="2023-01-01" class="text-xs text-gray-500 dark:text-gray-400">January 2023 - Present</time>
+        </div>
+
+        <button id="moreBtn" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 rounded mt-4 transition-colors">
+          More About Me
+        </button>
+      </article>
+
+      <div id="moreContent" class="hidden px-5 py-4 bg-emerald-50 dark:bg-gray-700 border-t border-pink-200 dark:border-gray-600">
+        <div class="mb-3">
+          <h3 class="font-medium text-sm mb-2 text-emerald-700 dark:text-emerald-300">Skills</h3>
+          <div class="flex flex-wrap gap-1">
+            <span class="bg-pink-100 dark:bg-pink-800 text-pink-800 dark:text-pink-100 px-2 py-1 rounded text-xs">HTML</span>
+            <span class="bg-pink-100 dark:bg-pink-800 text-pink-800 dark:text-pink-100 px-2 py-1 rounded text-xs">CSS</span>
+            <span class="bg-pink-100 dark:bg-pink-800 text-pink-800 dark:text-pink-100 px-2 py-1 rounded text-xs">JavaScript</span>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-medium text-sm mb-1 text-emerald-700 dark:text-emerald-300">Hobbies</h3>
+          <ul class="text-sm text-gray-600 dark:text-gray-200 list-disc list-inside">
+            <li>Photography</li>
+            <li>Hiking</li>
+            <li>Reading</li>
+          </ul>
+        </div>
+        
+        <div class="mt-3 border-l-2 border-pink-300 pl-2">
+          <p id="quote" class="text-sm italic text-gray-600 dark:text-gray-300"></p>
+        </div>
+      </div>
+
+      <footer class="bg-emerald-100 dark:bg-gray-800 p-3 text-center text-xs text-gray-600 dark:text-gray-400 border-t border-emerald-200 dark:border-gray-700">
+        <p>Last updated: <time datetime="2025-04-13">April 13, 2025</time></p>
+        <button id="darkModeToggle" class="text-pink-500 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300 mt-1 transition-colors">
+          Dark Mode
+        </button>
+      </footer>
+      
+    </section>
+  </main>
+
+  <script>
+    // Toggle More Content
+    document.getElementById('moreBtn').addEventListener('click', () => {
+      document.getElementById('moreContent').classList.toggle('hidden');
+    });
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    // Check for saved preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && 
+        window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Random Quote
+    const quotes = [
+      "Design is not just what it looks like, it's how it works.",
+      "Creativity is intelligence having fun.",
+      "Simplicity is the ultimate sophistication."
+    ];
+    
+    document.getElementById('quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+  </script>
+</body>
+</html>
